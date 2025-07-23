@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}Phishing Detection Result{% endblock
+%} {% block content %}
+<div class="container">
+  <h1 class="mb-4">Phishing Detection Result</h1>
+
+  <div
+    class="alert {% if result == 'Phishing' %}alert-danger{% else %}alert-success{% endif %}"
+  >
+    <h3>{{ result }}</h3>
+    {% if result == 'Phishing' %}
+    <p class="text-danger">⚠️ Warning! This domain is unsafe.</p>
+    <p>
+      This URL is <strong>{{ confidence }}%</strong> likely to be a phishing
+      attempt.
+    </p>
+    {% else %}
+    <p class="text-success">✅ This domain is safe.</p>
+    <p>
+      This URL is <strong>{{ 100 - confidence }}%</strong> likely to be
+      legitimate.
+    </p>
+    {% endif %}
+  </div>
+
+  {% if result == 'Phishing' %}
+  <button class="btn btn-danger mt-3" id="report" onclick="report()">
+    🚨 Report Phishing
+  </button>
+  {% endif %}
+
+  <a href="/predict" class="btn btn-primary mt-3">🔄 Check Another URL</a>
+</div>
+
+<script>
+  function report() {
+    alert("URL reported successfully!");
+  }
+</script>
+{% endblock %}

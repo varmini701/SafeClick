@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}Phishing Detection Result{% endblock
+%} {% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4 text-center">Detection Result</h1>
+
+  <div
+    class="p-4 border rounded {% if result == 'phishing' %}bg-danger text-white{% else %}bg-success text-white{% endif %}"
+  >
+    <h4>Analysis:</h4>
+    <p><strong>Prediction:</strong> {{ result | capitalize }}</p>
+    <p><strong>Confidence:</strong> {{ confidence }}%</p>
+  </div>
+
+  <a href="/detect-text" class="btn btn-primary mt-3">Analyze Another Text</a>
+</div>
+{% endblock %}
